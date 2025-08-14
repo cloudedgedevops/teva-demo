@@ -1,0 +1,19 @@
+name: deploy second greetings app
+
+on:
+    push:
+        branches: [main, python-app, feature/goodbye]
+        path :
+            - 'second-app/**'
+            - '.github/workflows/calling-template-second-app.yml'
+            - '.github/workflows/webapp-template.yml'
+jobs:
+    deploy:
+        uses: ./.github/workflows/webapp-template.yml
+        with:
+            python-version: '3.12'
+            app-path: 'second-app'
+            webapp-name: 'python-second-app'
+            calling-branch: ${{ github.ref_name }}
+        secrets:
+            publish-profile: ${{ secrets.PYTHON_PUBLISH_PROFILE_SECOND_APP }}

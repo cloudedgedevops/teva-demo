@@ -3,6 +3,10 @@ name: deploy hello world python app
 on:
     push:
         branches: [main, python-app, feature/goodbye]
+        path :
+            - 'first-app/**'
+            - '.github/workflows/calling-template-helloworld-py.yml'
+            - '.github/workflows/webapp-template.yml'
 jobs:
     deploy:
         uses: ./.github/workflows/webapp-template.yml

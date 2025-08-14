@@ -1,0 +1,51 @@
+name: reuseable webapp-template-python
+
+on:
+  workflow_call:
+    inputs:
+        python-version:
+            description: 'Python version to use'
+            required: true
+            default: '3.10'
+        requirements-file:
+            description: 'Path to the requirements file'
+            required: true
+            default: 'requirements.txt'
+        webapp-name:
+            description: 'webapp name to publish into'
+            required: true
+            default: 'pytest'
+        calling-branch:
+            description: 'Branch that is calling this workflow'
+            required: false
+            default: 'main'
+    secrets:
+        publish-profile:
+            description: 'Azure publish profile secret'
+            required: true
+jobs:
+    webapp-template:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+            uses: actions/checkout@v2
+    
+        - name: Set up Python
+            uses: actions/setup-python@v2
+            with:
+            python-version: ${{ inputs.python-version }}
+
+        - name: Set up env var for branch
+            run: echo "CALLING_BRANCH=${{ inputs.calling-branch }}" >> $GITHUB_ENV
+            
+        - name: Install dependencies
+            run: |
+            python -m pip install --upgrade pip
+            pip install -r ${{ inputs.requirements-file }}
+    
+        - name: Deploy to Azure Web App
+            uses: azure/webapps-deploy@v2
+            with:
+            app-name: ${{ inputs.webapp-name }}
+            publish-profile: ${{ secrets.publish-profile }}
+            package: .

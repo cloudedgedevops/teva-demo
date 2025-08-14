@@ -55,18 +55,17 @@ jobs:
         with:
           name: python-app
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_38DF8C73D1DF426A9E1441805293BA05 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CB965305B2574D44AF0388CAA2F157BA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E1CBB5A76A844F1EAB06362803600450 }}
+      # - name: Login to Azure
+      #   uses: azure/login@v2
+      #   with:
+      #     client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_38DF8C73D1DF426A9E1441805293BA05 }}
+      #     tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CB965305B2574D44AF0388CAA2F157BA }}
+      #     subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E1CBB5A76A844F1EAB06362803600450 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'python-first-app'
+          publish-profile: ${{ secrets.PYTHON_PUBLISH_PROFILE}}
           slot-name: 'Production'
-
-          

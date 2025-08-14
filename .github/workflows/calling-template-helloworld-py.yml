@@ -2,14 +2,18 @@ name: deploy hello world python app
 
 on:
     push:
-        branches: [main, python-app]
+        branches: [main, python-app, feature/goodbye]
+        path :
+            - 'first-app/**'
+            - '.github/workflows/calling-template-helloworld-py.yml'
+            - '.github/workflows/webapp-template.yml'
 jobs:
     deploy:
-        uses: ./webapp-template.yml@main
+        uses: ./.github/workflows/webapp-template.yml
         with:
             python-version: '3.13'
-            requirements-file: 'first-app/requirements.txt'
+            app-path: 'first-app'
             webapp-name: 'python-first-app'
             calling-branch: ${{ github.ref_name }}
         secrets:
-            publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_PYTHON_FIRST_APP }}
+            publish-profile: ${{ secrets.PYTHON_PUBLISH_PROFILE }}

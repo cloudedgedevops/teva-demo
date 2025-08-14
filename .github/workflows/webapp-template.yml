@@ -8,11 +8,11 @@ on:
             type: string
             required: true
             default: '3.10'
-        requirements-file:
-            description: 'Path to the requirements file'
+        app-path:
+            description: 'Path to the application files'
             type: string
             required: true
-            default: 'requirements.txt'
+            default: '.'
         webapp-name:
             description: 'webapp name to publish into'
             type: string
@@ -45,11 +45,11 @@ jobs:
         - name: Install dependencies
           run: |
             python -m pip install --upgrade pip
-            pip install -r ${{ inputs.requirements-file }}
+            pip install -r ${{ inputs.app-path }}/requirements.txt
     
         - name: Deploy to Azure Web App
           uses: azure/webapps-deploy@v2
           with:
             app-name: ${{ inputs.webapp-name }}
             publish-profile: ${{ secrets.publish-profile }}
-            package: .
+            package: ${{ inputs.app-path }}

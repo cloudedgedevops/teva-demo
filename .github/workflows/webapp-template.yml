@@ -5,18 +5,22 @@ on:
     inputs:
         python-version:
             description: 'Python version to use'
+            type: string
             required: true
             default: '3.10'
         requirements-file:
             description: 'Path to the requirements file'
+            type: string
             required: true
             default: 'requirements.txt'
         webapp-name:
             description: 'webapp name to publish into'
+            type: string
             required: true
             default: 'pytest'
         calling-branch:
             description: 'Branch that is calling this workflow'
+            type: string
             required: false
             default: 'main'
     secrets:

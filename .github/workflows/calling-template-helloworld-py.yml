@@ -8,7 +8,7 @@ jobs:
         uses: ./.github/workflows/webapp-template.yml
         with:
             python-version: '3.13'
-            requirements-file: 'first-app/requirements.txt'
+            app-path: 'first-app'
             webapp-name: 'python-first-app'
             calling-branch: ${{ github.ref_name }}
         secrets:

@@ -12,4 +12,4 @@ jobs:
             webapp-name: 'python-first-app'
             calling-branch: ${{ github.ref_name }}
         secrets:
-            publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_PYTHON_FIRST_APP }}
+            publish-profile: ${{ secrets.PYTHON_PUBLISH_PROFILE }}

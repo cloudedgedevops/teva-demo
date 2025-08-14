@@ -40,7 +40,7 @@ jobs:
             python-version: ${{ inputs.python-version }}
 
         - name: Set up env var for branch
-          run: echo "CALLING_BRANCH=${{ inputs.calling-branch }}" >> $GITHUB_ENV
+          run: echo "calling_branch=${{ inputs.calling-branch }}" >> $GITHUB_ENV
 
         - name: Install dependencies
           run: |

@@ -5,7 +5,7 @@ on:
         branches: [main, python-app, feature/goodbye]
 jobs:
     deploy:
-        uses: .github/workflows/webapp-template.yml@feature/goodbye
+        uses: ./.github/workflows/webapp-template.yml@feature/goodbye
         with:
             python-version: '3.13'
             requirements-file: 'first-app/requirements.txt'

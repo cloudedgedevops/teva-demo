@@ -1,0 +1,14 @@
+name: deploy hello world python app
+
+on:
+    push:
+        branches: [main, python-app]
+jobs:
+    deploy:
+        uses: ./webapp-template.yml
+        with:
+            python-version: '3.13'
+            requirements-file: 'first-app/requirements.txt'
+            webapp-name: 'python-first-app'
+        secrets:
+            publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_PYTHON_FIRST_APP }}

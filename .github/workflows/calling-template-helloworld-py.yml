@@ -7,6 +7,17 @@ on:
             - 'first-app/**'
             - '.github/workflows/calling-template-helloworld-py.yml'
             - '.github/workflows/webapp-template.yml'
+    workflow_dispatch:
+        inputs:
+            name:
+                type: string
+                description: what is your name
+            app-type:
+                tpye: choice
+                description: what is your application language
+                options:
+                - python
+                - angular
 jobs:
     deploy:
         uses: ./.github/workflows/webapp-template.yml

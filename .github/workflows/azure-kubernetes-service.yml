@@ -39,7 +39,7 @@ env:
   CONTAINER_NAME: "pyhton-app"
   RESOURCE_GROUP: "yoav-rg"
   CLUSTER_NAME: "teva"
-  DEPLOYMENT_MANIFEST_PATH: "python-k8s.yml"
+  DEPLOYMENT_MANIFEST_PATH: "firstapp/python-k8s.yml"
 
 jobs:
   buildImage:

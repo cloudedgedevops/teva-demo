@@ -1,8 +1,10 @@
-name: Deploy My HTML App to Azure Web App
-
-# Тригерира само ако има промени в my-html-app/
 on:
   push:
+    branches:
+      - main
+    paths:
+      - 'my-html-app/**'
+  pull_request:
     branches:
       - main
     paths:
